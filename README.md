@@ -216,6 +216,7 @@ Small, separate pieces for shipping raylib games. Use one or all of them.
 | [raylib-canvas-kit](https://github.com/binRick/raylib-canvas-kit) | One fixed resolution at any window size |
 | [raylib-touch-kit](https://github.com/binRick/raylib-touch-kit) | On-screen analog stick and buttons, for when the game is on a phone |
 | [raylib-debug-kit](https://github.com/binRick/raylib-debug-kit) | JSON event log, screenshots, repeatable runs, overlay |
+| [raylib-dev-kit](https://github.com/binRick/raylib-dev-kit) | Sound board, asset gallery and sandboxes inside the game |
 
 ## FAQ
 
