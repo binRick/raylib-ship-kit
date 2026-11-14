@@ -1,10 +1,14 @@
 <div align="center">
 
-# 🚀 raylib ship kit
+<img src="docs/hero.png" alt="raylib ship kit: one C codebase, six platforms, one command each" width="900">
+
+# raylib ship kit
 
 **Write your game in C with [raylib](https://www.raylib.com). Ship it to six platforms with one command each.**
 
 macOS · Windows · Linux · Browser · iPhone · iPad, and all the way into App Store review.
+
+### [▶ Play the demo in your browser](https://binrick.github.io/raylib-ship-kit/)
 
 ![macOS](https://img.shields.io/badge/macOS-signed%20%2B%20notarized-78e1eb?labelColor=0d1026)
 ![Windows](https://img.shields.io/badge/Windows-one%20static%20.exe-78e1eb?labelColor=0d1026)
@@ -13,10 +17,6 @@ macOS · Windows · Linux · Browser · iPhone · iPad, and all the way into App
 ![iOS](https://img.shields.io/badge/iOS-simulator%20%E2%86%92%20App%20Store-ffcd50?labelColor=0d1026)
 ![raylib](https://img.shields.io/badge/raylib-6.2-f05468?labelColor=0d1026)
 ![License](https://img.shields.io/badge/license-MIT-9fb6d6?labelColor=0d1026)
-
-<img src="docs/screenshot.png" alt="Star Catcher, the bundled demo game, running on macOS" width="820">
-
-<sub>Star Catcher, the bundled demo. About 200 lines of C, no engine, and it runs everywhere below.</sub>
 
 </div>
 
@@ -33,6 +33,12 @@ git clone https://github.com/binRick/raylib-ship-kit.git my-game && cd my-game
 scripts/build-web.sh --serve  # the same game in your browser
 scripts/ios-sim.sh            # the same game in the iOS simulator
 ```
+
+<div align="center">
+<img src="docs/screenshot.png" alt="Star Catcher, the bundled demo game, running on macOS" width="720">
+
+<sub>Star Catcher, the bundled demo. About 200 lines of C, no engine, and it runs everywhere below.</sub>
+</div>
 
 ## What you get
 

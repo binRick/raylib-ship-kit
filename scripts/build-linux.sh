@@ -8,10 +8,10 @@
 [[ -f build-linux/CMakeCache.txt ]] || cmake -S . -B build-linux -DCMAKE_BUILD_TYPE=Release
 cmake --build build-linux -j "$JOBS"
 
-stage="build-linux/$APP_SLUG"
+stage="build-linux/pkg/$APP_SLUG"   # not build-linux/$APP_SLUG: that is the binary
 rm -rf "$stage" && mkdir -p "$stage"
 cp "build-linux/$APP_SLUG" "$stage/"
 cp -R assets "$stage/"
 mkdir -p dist
-tar -C build-linux -czf "dist/$APP_SLUG-linux-$(uname -m).tar.gz" "$APP_SLUG"
+tar -C build-linux/pkg -czf "dist/$APP_SLUG-linux-$(uname -m).tar.gz" "$APP_SLUG"
 ls -la dist/*.tar.gz
