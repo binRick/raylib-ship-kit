@@ -10,6 +10,7 @@ macOS · Windows · Linux · Browser · iPhone · iPad, and all the way into App
 
 ### [▶ Play the demo in your browser](https://binrick.github.io/raylib-ship-kit/)
 
+[![build](https://github.com/binRick/raylib-ship-kit/actions/workflows/build.yml/badge.svg)](https://github.com/binRick/raylib-ship-kit/actions/workflows/build.yml)
 ![macOS](https://img.shields.io/badge/macOS-signed%20%2B%20notarized-78e1eb?labelColor=0d1026)
 ![Windows](https://img.shields.io/badge/Windows-one%20static%20.exe-78e1eb?labelColor=0d1026)
 ![Linux](https://img.shields.io/badge/Linux-tar.gz-78e1eb?labelColor=0d1026)
@@ -185,7 +186,7 @@ Honesty table for this repository at its first commit (macOS 26, Apple Silicon, 
 | Browser build | ✅ played in Chrome: input, canvas resize, high score persists across reload |
 | iOS simulator | ✅ built, installed, launched, rendered |
 | Windows cross-compile | ✅ builds and zips; the `.exe` has not been run on Windows from this repo |
-| Linux build, GitHub Actions, Pages | ⏳ written, first run pending |
+| Linux build and package, Windows cross-compile, browser build, Pages deploy on GitHub Actions | ✅ green on `main` |
 | Developer ID notarization, device install, App Store upload and submit | ⏳ these scripts were lifted from the release scripts of shipped raylib games and generalised; the generalised versions have not been run against Apple from this repo yet |
 
 If one of the ⏳ rows fails for you, please open an issue with the output.
