@@ -1,0 +1,11 @@
+build/
+build-*/
+dist/
+vendor/
+vendor-ios/
+ios/build/
+ios/build-sim/
+ios/*.xcodeproj/
+.DS_Store
+*.p8
+.env

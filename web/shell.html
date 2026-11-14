@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>__APP_NAME__</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0d1026; }
+  canvas { display: block; width: 100vw; height: 100vh; outline: none; touch-action: none; }
+  #status { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+            color: #9fb6d6; font: 15px -apple-system, system-ui, sans-serif; letter-spacing: .08em; pointer-events: none; }
+</style>
+</head>
+<body>
+<canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+<div id="status">Loading...</div>
+<script>
+  var Module = {
+    canvas: document.getElementById('canvas'),
+    // command-line flags from the URL, e.g. index.html?--debug&--seed&42
+    arguments: location.search ? decodeURIComponent(location.search.slice(1)).split('&') : [],
+    setStatus: function (t) {
+      var s = document.getElementById('status');
+      if (!t) { s.style.display = 'none'; return; }
+      var m = t.match(/\((\d+(\.\d+)?)\/(\d+)\)/);  // "Downloading data... (x/y)"
+      s.textContent = m ? 'Loading ' + Math.round(100 * m[1] / m[3]) + '%' : 'Loading...';
+    },
+    print: function (t) { console.log(t); },
+    printErr: function (t) { console.warn(t); }
+  };
+  window.addEventListener('click', function () { Module.canvas.focus(); });
+  // Browsers keep audio muted until the player interacts. raylib unlocks on a click or tap;
+  // this lets a first key press start the sound too.
+  window.addEventListener('keydown', function () { if (window.miniaudio) miniaudio.unlock(); });
+  // raylib reads input once per frame, so a press and release inside one frame (a trackpad tap,
+  // a quick key flick) would be missed. Hold back any release that comes within 50 ms of its press.
+  (function () {
+    var HOLD = 50, downAt = {}, replayed = new WeakSet();
+    function key(e) { return e.type.indexOf('mouse') === 0 ? 'm' + e.button : 'k' + e.code; }
+    function down(e) { downAt[key(e)] = performance.now(); }
+    function up(e) {
+      if (replayed.has(e)) return;
+      var wait = HOLD - (performance.now() - (downAt[key(e)] || 0));
+      if (wait <= 0) return;
+      e.stopImmediatePropagation();
+      var copy = new e.constructor(e.type, e);
+      replayed.add(copy);
+      var target = e.target;
+      setTimeout(function () { target.dispatchEvent(copy); }, wait);
+    }
+    window.addEventListener('mousedown', down, true);
+    window.addEventListener('keydown', down, true);
+    window.addEventListener('mouseup', up, true);
+    window.addEventListener('keyup', up, true);
+  })();
+</script>
+{{{ SCRIPT }}}
+</body>
+</html>
