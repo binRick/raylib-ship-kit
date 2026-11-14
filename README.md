@@ -206,6 +206,17 @@ scripts/                one script per target
 skills/                 the Claude Code skill
 ```
 
+## The family
+
+Small, separate pieces for shipping raylib games. Use one or all of them.
+
+| | |
+|---|---|
+| **raylib-ship-kit** (this repo) | Build and release one C codebase to macOS, Windows, Linux, browser and iOS |
+| [raylib-canvas-kit](https://github.com/binRick/raylib-canvas-kit) | One fixed resolution at any window size |
+| [raylib-touch-kit](https://github.com/binRick/raylib-touch-kit) | On-screen analog stick and buttons, for when the game is on a phone |
+| [raylib-debug-kit](https://github.com/binRick/raylib-debug-kit) | JSON event log, screenshots, repeatable runs, overlay |
+
 ## FAQ
 
 **Is this an engine?** No. It is raylib, unmodified on desktop and web, plus build scripts. Your game code is plain raylib.
