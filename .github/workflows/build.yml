@@ -1,0 +1,50 @@
+# Builds the Linux, Windows and browser versions on every push, and publishes the browser
+# build to GitHub Pages from main. macOS and iOS need a Mac: run those scripts locally.
+name: build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libasound2-dev libx11-dev libxrandr-dev libxi-dev libgl1-mesa-dev \
+            libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
+      - run: scripts/build-linux.sh
+      - uses: actions/upload-artifact@v4
+        with: { name: linux, path: dist/*.tar.gz }
+
+  windows:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq mingw-w64 zip
+      - run: scripts/build-windows.sh
+      - uses: actions/upload-artifact@v4
+        with: { name: windows, path: dist/*.zip }
+
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mymindstorm/setup-emsdk@v14
+      - run: scripts/build-web.sh
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: dist/web }
+
+  pages:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: web
+    runs-on: ubuntu-latest
+    permissions: { pages: write, id-token: write }
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

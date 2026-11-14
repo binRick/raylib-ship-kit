@@ -28,7 +28,7 @@ already done, with a small working game on top so you can see every target run b
 change a line.
 
 ```bash
-git clone __REPO_URL__.git my-game && cd my-game
+git clone https://github.com/binRick/raylib-ship-kit.git my-game && cd my-game
 ./run.sh                      # plays on your Mac or Linux box in about a minute
 scripts/build-web.sh --serve  # the same game in your browser
 scripts/ios-sim.sh            # the same game in the iOS simulator
@@ -41,7 +41,7 @@ scripts/ios-sim.sh            # the same game in the iOS simulator
 | **macOS / Linux dev** | `./run.sh` | a running game | cmake, a C compiler |
 | **Browser** | `scripts/build-web.sh` | `dist/web/` (static files: host anywhere) | emscripten |
 | **Windows** | `scripts/build-windows.sh` | `dist/<game>-windows.zip`, one static `.exe` with icon, version info and DPI manifest | mingw-w64 (cross-compiles from macOS or Linux) |
-| **Linux** | `scripts/build-linux.sh` | `dist/<game>-linux-<arch>.tar.gz` | Linux, or the bundled CI |
+| **Linux** | `scripts/build-linux.sh` | `dist/<game>-linux-<arch>.tar.gz` | Linux, or the bundled GitHub Actions workflow |
 | **macOS release** | `scripts/mac-release.sh` | `dist/<game>-macos.zip`: universal `.app`, Developer ID signed, notarized, stapled | Apple Developer account (`--adhoc` needs none) |
 | **iOS simulator** | `scripts/ios-sim.sh` | the game running in a simulator | Xcode, xcodegen |
 | **iPhone / iPad** | `scripts/ios-device.sh` | the game on the device in your hand | a free Apple ID is enough |
@@ -165,8 +165,8 @@ Then, in any raylib project:
 
 ## CI
 
-`.gitlab-ci.yml` builds the Linux, Windows and browser versions on every push and publishes
-the browser build to GitLab Pages from the default branch, so every commit has a playable
+`.github/workflows/build.yml` builds the Linux, Windows and browser versions on every push
+and publishes the browser build to GitHub Pages from `main`, so every commit has a playable
 link. macOS and iOS builds need a Mac; run those scripts locally or on a macOS runner.
 
 ## What has actually been run
@@ -179,7 +179,7 @@ Honesty table for this repository at its first commit (macOS 26, Apple Silicon, 
 | Browser build | ✅ played in Chrome: input, canvas resize, high score persists across reload |
 | iOS simulator | ✅ built, installed, launched, rendered |
 | Windows cross-compile | ✅ builds and zips; the `.exe` has not been run on Windows from this repo |
-| Linux build, GitLab CI, Pages | ⏳ written, first pipeline pending |
+| Linux build, GitHub Actions, Pages | ⏳ written, first run pending |
 | Developer ID notarization, device install, App Store upload and submit | ⏳ these scripts were lifted from the release scripts of shipped raylib games and generalised; the generalised versions have not been run against Apple from this repo yet |
 
 If one of the ⏳ rows fails for you, please open an issue with the output.

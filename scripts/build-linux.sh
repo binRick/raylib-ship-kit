@@ -3,7 +3,7 @@
 # Needs: build-essential cmake git libasound2-dev libx11-dev libxrandr-dev libxi-dev
 #        libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev libxinerama-dev libwayland-dev libxkbcommon-dev
 . "$(dirname "$0")/_kit.sh"
-[[ "$(uname -s)" == Linux ]] || die "run this on Linux (CI does: see .gitlab-ci.yml)"
+[[ "$(uname -s)" == Linux ]] || die "run this on Linux (CI does: see .github/workflows/build.yml)"
 
 [[ -f build-linux/CMakeCache.txt ]] || cmake -S . -B build-linux -DCMAKE_BUILD_TYPE=Release
 cmake --build build-linux -j "$JOBS"
